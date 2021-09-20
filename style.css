@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    background-color: #D5E7F3;
+}
+h1{
+    text-align: center;
+}
+.main-container{
+    width: 80%;
+   margin: 0 auto;
+}
+.input-btn{
+    display: flex;
+    justify-content: space-between;
+}
+.main-container > h2{
+    text-align: right;
+    /*display: flex;*/
+    /*!*justify-content: right;*!*/
+}
+button{
+    height: 50px;
+    width: 100px;
+    margin-top: 20px;
+}
