@@ -2,30 +2,32 @@
 <html lang="en">
 <head>
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
-<h1>Учет моих расходов</h1>
-<div class="main-container">
-    <div class="input-btn">
-        <div class="input">
-            <p>Куда было потрачено:</p>
-            <input id="where" type="text" placeholder="Куда было потрачено">
+<main>
+
+    <h1>Учет моих расходов</h1>
+    <div class="main-container">
+        <div class="input-btn">
+            <div class="input">
+                <p>Куда было потрачено:</p>
+                <input id="where" type="text" placeholder="Куда было потрачено">
+            </div>
+            <div class="input">
+                <p>Сколько было потрачено:</p>
+                <input id="how" type="text" placeholder="Сколько было потрачено">
+            </div>
+            <div class="btn-add">
+                <button onclick="onClickButton()">Добавить</button>
+            </div>
         </div>
-        <div class="input">
-            <p>Сколько было потрачено:</p>
-            <input id="how" type="text" placeholder="Сколько было потрачено">
-        </div>
-        <button onclick="onClickButton()">Добавить</button>
+        <h2 class="total-p">Итого: <p id="total">h</p> р.</h2>
     </div>
-    <h2 class="total-p">Итого: <p class="total">h</p> р.</h2>
-</div>
 
-<div id="content-page"></div>
+    <div id="content-page"></div>
 
-
-
-
+</main>
 </body>
 </html>
