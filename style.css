@@ -1,25 +1,109 @@
 body{
     margin: 0;
     background-color: #D5E7F3;
+    font-family: sans-serif;
+}
+main{
+    width: 80%;
+    margin: 0 auto;
 }
 h1{
     text-align: center;
+    font-style: italic;
+    font-weight: 400;
 }
 .main-container{
-    width: 80%;
-   margin: 0 auto;
+    /* width: 80%;*/
+    margin: 0 auto;
+    position: relative;
 }
 .input-btn{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    position: relative;
 }
 .main-container > h2{
-    text-align: right;
-    /*display: flex;*/
-    /*!*justify-content: right;*!*/
+
+}
+.btn-add{
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 button{
-    height: 50px;
-    width: 100px;
-    margin-top: 20px;
+    font-size: 20px;
+    padding: 10px 15px;
+    background-color: #74C3A4;
+    border: 0;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-left: 20px;
+}
+input{
+    font-size: 14px;
+    height: 40px;
+    width: 200px;
+    padding-left: 10px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+.input > p{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.total-container{
+    right: 0;
+}
+h2{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    font-weight: 500;
+}
+h2 > p{
+    margin: 0 5px;
+    font-size: 20px;
+}
+
+/*script.js*/
+
+.expenses-container{
+    display: flex;
+    justify-content: space-between;
+}
+.expenses-container > input, p {
+    margin: 0;
+    text-align: left;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+.expenses-container > img, p{
+    vertical-align: middle;
+}
+img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.text-expenses{
+    font-size: 18px;
+    color: black;
+    margin-left: 8px;
+    border: none;
+    background-color: #D5E7F3;
+}
+.text-expenses::placeholder {
+    color: black;
+}
+.text-edit{
+    border: 1px solid gray;
+}
+.done-text::placeholder {
+    color: rgba(0, 0, 0, 0.3);
 }
