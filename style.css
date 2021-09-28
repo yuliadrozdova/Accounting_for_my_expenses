@@ -22,25 +22,17 @@ h1{
     justify-content: center;
     position: relative;
 }
+/*.input-btn >div {*/
+/*    width: 30%;*/
+/*}*/
+.input-wrap{
+    display: flex;
+    justify-content: center;
+}
 .main-container > h2{
 
 }
-.btn-add{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-button{
-    font-size: 20px;
-    padding: 10px 15px;
-    background-color: #74C3A4;
-    border: 0;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-left: 20px;
-}
+
 input{
     font-size: 14px;
     height: 40px;
@@ -54,6 +46,26 @@ input{
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 5px;
+}
+.btn-add{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+input[type="submit"]{
+    font-size: 20px;
+    width: 200px;
+    height: 40px;
+    background-color: #74C3A4;
+    border: 0;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-left: 20px;
+}
+input[type="submit"]:hover{
+    box-shadow:  0 5px 15px 0 rgba(	36, 118, 91, 0.2)
 }
 .total-container{
     right: 0;
@@ -83,7 +95,7 @@ h2 > p{
     font-family: sans-serif;
 }
 .expenses-container > img, p{
-    vertical-align: middle;
+    margin-top: 1%;
 }
 img{
     width: 20px;

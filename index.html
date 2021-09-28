@@ -11,19 +11,23 @@
     <h1>Учет моих расходов</h1>
     <div class="main-container">
         <div class="input-btn">
-            <div class="input">
-                <p>Куда было потрачено:</p>
-                <input id="where" type="text" placeholder="Куда было потрачено">
+            <div class="input-wrap">
+                <div class="input">
+                    <p>Куда было потрачено:</p>
+                    <input id="where" type="text" placeholder="Куда было потрачено">
+                </div>
+                <div class="input">
+                    <p>Сколько было потрачено:</p>
+                    <input id="how" type="text" placeholder="Сколько было потрачено">
+                </div>
             </div>
-            <div class="input">
-                <p>Сколько было потрачено:</p>
-                <input id="how" type="text" placeholder="Сколько было потрачено">
-            </div>
+
             <div class="btn-add">
-                <button onclick="onClickButton()">Добавить</button>
+                <input type="submit" onclick="onClickButton()" value="Добавить">
+
             </div>
         </div>
-        <h2 class="total-p">Итого: <p id="total">h</p> р.</h2>
+        <h2 class="total-p">Итого: <p id="total"></p> р.</h2>
     </div>
 
     <div id="content-page"></div>

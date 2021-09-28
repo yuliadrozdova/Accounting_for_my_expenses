@@ -7,4 +7,4 @@ const expenseSchema = new Schema({
     how: Number     //integer
 });
 
-modele.exports = Expense = mongoose.model('expense', expenseSchema);
+module.exports = Expense = mongoose.model('expense', expenseSchema);
