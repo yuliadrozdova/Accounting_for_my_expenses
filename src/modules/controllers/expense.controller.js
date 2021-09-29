@@ -9,24 +9,23 @@ module.exports.getAllExpenses = (req, res, next) => {
     });
 }
 
-//Создать роут для добавления новых затрат. При сохранении учитывать дату создания записи ???
+//Создать роут для добавления новых затрат. При сохранении учитывать дату создания записи
 const createExpenses = async (params) => {
-    console.log('params ' + params);
-    console.log('where ' + params.where);
-    console.log('id ' + params._id);
     const expenses = await new Expense ({
         where: params.where,
-        how: params.how
+        how: params.how,
+        date: params.date
     });
     await expenses.save().then(result => {
         console.log({data: result});
-        console.log('id2 ' + params.id);
+        return {data: result};
     }).catch(err => console.log(err))
 }
 module.exports.createExpenses = (req, res) => {
-    createExpenses(req.body);
-    //console.log('id3 ' + req.body.id);
-    res.send('Creating end');
+    let a = createExpenses(req.body);
+    console.log(a);
+
+    res.send(a);
 }
 
 // Создать роут для редактирования затрат
@@ -34,28 +33,31 @@ const updateExpenses = async(params) =>{
     await Expense.updateOne({where: params.where, how: params.how},
         {where: params.whereUpdating, how: params.howUpdating})
         .then(result => {
-            console.log('Expense updating');
+            console.log({data: result});
+            return {data: result};
         }).catch(err => console.log(err));
 }
 
 module.exports.changeExpenses = (req, res, next) => {
-    updateExpenses(req.body);
-    res.send('Updating end');
+    let a = updateExpenses(req.body);
+    console.log(a);
+
+    res.send(a);
 }
 
 // Создать роут для удаления затрат
 const deleteExpenses = async(params) =>{
-     console.log('where' + params.where);
-    // console.log('where' + params.where);
+    console.log(444);
     await Expense.deleteOne({where: params.where, how: params.how})
         .then(result => {
-            console.log('Expense deleted');
-           // console.log(params);
+             console.log('Expense deleted');
+             return true;
+
         }).catch(err => console.log(err));
 }
 
 module.exports.deleteExpenses = (req, res, next) => {
-   // console.log('id ' + req.body.id);
-    deleteExpenses(req.body);
-    res.send('Deleted end');
+
+ let a = deleteExpenses(req.body);
+   res.send({a});
 }
