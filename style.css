@@ -4,16 +4,16 @@ body{
     font-family: sans-serif;
 }
 main{
-    width: 80%;
+    width: 40%;
     margin: 0 auto;
 }
 h1{
     text-align: center;
     font-style: italic;
     font-weight: 400;
+    margin-bottom: 50px;
 }
 .main-container{
-    /* width: 80%;*/
     margin: 0 auto;
     position: relative;
 }
@@ -22,17 +22,38 @@ h1{
     justify-content: center;
     position: relative;
 }
-.main-container > h2{
-
+.input-wrap{
+    display: flex;
+    justify-content: center;
+    width: 60%;
+}
+.input-how{
+width: 40%;
+}
+.input-where{
+    width: 50%;
+    margin-right: 30px;
+}
+input{
+    font-size: 14px;
+    height: 40px;
+    width: 90%;
+    padding-left: 10px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+.input-where > p, .input-how > p{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 5px;
 }
 .btn-add{
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    width: 30%;
 }
-button{
-    font-size: 20px;
-    padding: 10px 15px;
+input[type="submit"]{
+    font-size: 18px;
+    width: 25%;
+    height: 44px;
     background-color: #74C3A4;
     border: 0;
     border-radius: 5px;
@@ -41,19 +62,8 @@ button{
     right: 0;
     margin-left: 20px;
 }
-input{
-    font-size: 14px;
-    height: 40px;
-    width: 200px;
-    padding-left: 10px;
-    border: 1px solid #E8E8E8;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-.input > p{
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 5px;
+input[type="submit"]:hover{
+    box-shadow:  0 5px 15px 0 rgba(	36, 118, 91, 0.2)
 }
 .total-container{
     right: 0;
@@ -61,15 +71,13 @@ input{
 h2{
     display: flex;
     justify-content: flex-end;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
 }
 h2 > p{
     margin: 0 5px;
-    font-size: 20px;
+    font-size: 22px;
 }
-
-/*script.js*/
 
 .expenses-container{
     display: flex;
@@ -83,7 +91,7 @@ h2 > p{
     font-family: sans-serif;
 }
 .expenses-container > img, p{
-    vertical-align: middle;
+    margin-top: 10px;
 }
 img{
     width: 20px;
@@ -91,14 +99,21 @@ img{
     margin-left: 5px;
     cursor: pointer;
 }
-.text-expenses{
+.text-expenses, .text-expenses-cost{
+
     font-size: 18px;
     color: black;
-    margin-left: 8px;
+    margin-left: 10px;
     border: none;
     background-color: #D5E7F3;
 }
-.text-expenses::placeholder {
+.text-expenses{
+    width: 50%;
+}
+.text-expenses-cost{
+    width: 15%;
+}
+.text-expenses::placeholder, .text-expenses-cost::placeholder{
     color: black;
 }
 .text-edit{

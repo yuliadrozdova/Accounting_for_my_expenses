@@ -1,28 +1,60 @@
-let allExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+let allExpenses = [];
 let valueInputWhere = '';
 let valueInputHow = '';
 let inputWhere = null;
 let inputHow = null;
+let date = new Date;
 
 window.onload = async function init () {
     inputWhere = document.getElementById('where');
     inputHow = document.getElementById('how');
     inputWhere.addEventListener('change', updateValueWhere);
     inputHow.addEventListener('change', updateValueHow);
+    
+    const response = await fetch('http://localhost:8000/getAllExpenses',{
+        method: 'GET'
+    });
+    let result = await response.json();
+    allExpenses = result.data;
+    date = date.getDate() + '.0' + (date.getMonth()+1) + '.' + date.getFullYear();
+
     render();
 }
 
 onClickButton = async () =>{
-    allExpenses.push({
-        where: valueInputWhere,
-        how: valueInputHow
+
+    const response = await fetch('http://localhost:8000/createExpenses',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({
+            where: valueInputWhere,
+            how: valueInputHow,
+            date: date
+        })
     });
 
-    localStorage.setItem('expenses', JSON.stringify(allExpenses));
+    await allExpenses.push({
+        where: valueInputWhere,
+        how: valueInputHow,
+        date: date
+    });
+
+    let result = await response.json();
+    console.log('r ' + result);
     valueInputWhere = '';
     valueInputHow = '';
-    valueInputWhere.value = '';
-    valueInputHow.value = '';
+    inputWhere.value = '';
+    inputHow.value = '';
+
+    console.log(valueInputWhere);
+    console.log(valueInputHow);
+    console.log(valueInputWhere.value);
+    console.log(valueInputHow.value);
+
+
     console.log(allExpenses);
     render();
 }
@@ -39,7 +71,8 @@ render = () => {
     while (content.firstChild){
         content.removeChild(content.firstChild);
     }
-    console.log(allExpenses);
+
+   // let reversedAllExpenses = allExpenses.reverse();
 
     let indexPre = -1;
     let totalSum = 0;
@@ -58,17 +91,17 @@ render = () => {
         const textWhere = document.createElement('input');
         textWhere.type = 'text';
         textWhere.innerText = item.where;
-        textWhere.placeholder = item.where;
+        textWhere.placeholder = item.where + ' ' + item.date;
 
         textWhere.className = 'text-expenses';
         container.appendChild(textWhere);
 
         const textHow = document.createElement('input');
         textHow.type = 'text';
-        textHow.innerText = item.how + 'р.';
-        textHow.placeholder = item.how + 'р.';
+        textHow.innerText = item.how + ' р.';
+        textHow.placeholder = item.how + ' р.';
 
-        textHow.className = 'text-expenses';
+        textHow.className = 'text-expenses-cost';
         container.appendChild(textHow);
 
         const imageDone = document.createElement('img');
@@ -92,8 +125,9 @@ render = () => {
         }
 
         imageDone.onclick = function func() {
-            item.where = textWhere.value;
-            item.how = textHow.value;
+
+            item.whereUpdating = textWhere.value;
+            item.howUpdating = textHow.value;
 
             doneExpenses(item, index);
             textWhere.className = 'text-expenses';
@@ -113,6 +147,8 @@ render = () => {
             let num = Number(item.how);
             totalSum += num;
             indexPre = index;
+        } else {
+           totalSum = 0;
         }
         const total = document.getElementById('total');
         total.innerText = totalSum;
@@ -121,15 +157,41 @@ render = () => {
     });
 }
 
-deleteExpenses = async (index) => {
-    allExpenses.splice(index, 1); //new
-    localStorage.setItem('expenses', JSON.stringify(allExpenses));
+doneExpenses = async (item, index) => {
+
+    const response = await fetch('http://localhost:8000/changeExpenses',{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({
+            where: item.where,
+            how: item.how,
+            whereUpdating: item.whereUpdating,
+            howUpdating: item.howUpdating
+        })
+    });
+
+    allExpenses[index].where = allExpenses[index].whereUpdating;
+    allExpenses[index].how = allExpenses[index].howUpdating;
+
     render();
 }
 
-doneExpenses = async (item, index) => {
-    allExpenses[index].where = allExpenses[index].where;
-    allExpenses[index].how = allExpenses[index].how;
-    localStorage.setItem('expenses', JSON.stringify(allExpenses));
-    console.log(allExpenses);
+deleteExpenses = async (index) => {
+    const response = await fetch('http://localhost:8000/deleteExpenses',{
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({
+            where: allExpenses[index].where,
+            how: allExpenses[index].how
+        })
+    });
+
+    await allExpenses.splice(index, 1);
+    render();
 }
