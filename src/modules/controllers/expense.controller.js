@@ -1,7 +1,5 @@
 const Expense = require("../../db/models/expense/index");
 
-
-
 //Создать роут для получения все расходов пользователя
 module.exports.getAllExpenses = (req, res, next) => {
     Expense.find().then(result => {
@@ -9,55 +7,67 @@ module.exports.getAllExpenses = (req, res, next) => {
     });
 }
 
-//Создать роут для добавления новых затрат. При сохранении учитывать дату создания записи
-const createExpenses = async (params) => {
-    const expenses = await new Expense ({
-        where: params.where,
-        how: params.how,
-        date: params.date
-    });
-    await expenses.save().then(result => {
-        console.log({data: result});
-        return {data: result};
-    }).catch(err => console.log(err))
-}
-module.exports.createExpenses = (req, res) => {
-    let a = createExpenses(req.body);
-    console.log(a);
+//Создать роут для добавления новых затрат.
+// При сохранении учитывать дату создания записи
+module.exports.createExpenses = async (req, res) => {
+    const params = req.body;
+    try {
+        const expenses = new Expense({
+            where: params.where,
+            how: params.how,
+            date: params.date
+        });
+        await expenses.save()
 
-    res.send(a);
+        res.send(expenses);
+
+    } catch (e) {
+        res.status(500).send(e);
+    }
 }
 
 // Создать роут для редактирования затрат
-const updateExpenses = async(params) =>{
-    await Expense.updateOne({where: params.where, how: params.how},
-        {where: params.whereUpdating, how: params.howUpdating})
-        .then(result => {
-            console.log({data: result});
-            return {data: result};
-        }).catch(err => console.log(err));
+module.exports.changeExpenses = async (req, res, next) => {
+    const params = req.body;
+    try{
+        const expensesUpdate  = await Expense.updateOne({where: params.where, how: params.how},
+        {where: params.whereUpdating, how: params.howUpdating});
+
+        res.send(expensesUpdate);
+    } catch (e) {
+        res.status(500).send(e);
+    }
 }
-
-module.exports.changeExpenses = (req, res, next) => {
-    let a = updateExpenses(req.body);
-    console.log(a);
-
-    res.send(a);
-}
-
 // Создать роут для удаления затрат
-const deleteExpenses = async(params) =>{
-    console.log(444);
-    await Expense.deleteOne({where: params.where, how: params.how})
-        .then(result => {
-             console.log('Expense deleted');
-             return true;
+module.exports.deleteExpenses = async (req, res, next) => {
+    const params = req.body;
+    try{
+        await Expense.deleteOne({where: params.where, how: params.how});
 
-        }).catch(err => console.log(err));
+        console.log('Expense deleted');
+        res.send(true);
+    } catch (e) {
+        res.status(500).send(e);
+    }
 }
 
-module.exports.deleteExpenses = (req, res, next) => {
 
- let a = deleteExpenses(req.body);
-   res.send({a});
-}
+
+// const loongOperation = () => {
+//     return new Promise((resolve => {
+//         setTimeout(() => {
+//             resolve('gotovo')
+//         }, 2000)
+//     }))
+// }
+//
+// async function MYFN() {
+//     const result1 = await loongOperation()
+//     console.log('LOOG', result1);
+//     const result2 = await loongOperation()
+//     const result3 = await loongOperation()
+//     const result4 = await loongOperation()
+//     console.log('LOOG', result4);
+//     const result5 = await loongOperation()
+//     console.log(434)
+// }git

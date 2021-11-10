@@ -10,6 +10,9 @@ const {
 } = require('../controllers/expense.controller');
 const {model} = require("mongoose");
 
+router.get('/hello', (req, res, next) => {
+    res.send('HI!')
+});
 router.get('/getAllExpenses', getAllExpenses);
 router.post('/createExpenses', createExpenses);
 router.put('/changeExpenses', changeExpenses);
