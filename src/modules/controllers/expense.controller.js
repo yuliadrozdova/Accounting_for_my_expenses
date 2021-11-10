@@ -26,26 +26,6 @@ module.exports.createExpenses = async (req, res) => {
     }
 }
 
-
-// const loongOperation = () => {
-//     return new Promise((resolve => {
-//         setTimeout(() => {
-//             resolve('gotovo')
-//         }, 2000)
-//     }))
-// }
-//
-// async function MYFN() {
-//     const result1 = await loongOperation()
-//     console.log('LOOG', result1);
-//     const result2 = await loongOperation()
-//     const result3 = await loongOperation()
-//     const result4 = await loongOperation()
-//     console.log('LOOG', result4);
-//     const result5 = await loongOperation()
-//     console.log(434)
-// }
-
 // Создать роут для редактирования затрат
 module.exports.changeExpenses = async (req, res, next) => {
     const params = req.body;
@@ -70,3 +50,24 @@ module.exports.deleteExpenses = async (req, res, next) => {
         res.status(500).send(e);
     }
 }
+
+
+
+// const loongOperation = () => {
+//     return new Promise((resolve => {
+//         setTimeout(() => {
+//             resolve('gotovo')
+//         }, 2000)
+//     }))
+// }
+//
+// async function MYFN() {
+//     const result1 = await loongOperation()
+//     console.log('LOOG', result1);
+//     const result2 = await loongOperation()
+//     const result3 = await loongOperation()
+//     const result4 = await loongOperation()
+//     console.log('LOOG', result4);
+//     const result5 = await loongOperation()
+//     console.log(434)
+// }git
